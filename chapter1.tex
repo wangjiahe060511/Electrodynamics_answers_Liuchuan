@@ -1,0 +1,212 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{ctex}
+\usepackage{amsmath}
+\newcommand{\p}{\partial}
+\newcommand{\e}{\epsilon}
+\title{电动力学第一章习题解答}
+\author{wangjiahe060511 }
+\date{July 2026}
+
+\begin{document}
+
+\maketitle
+
+\section{ 电荷守恒定律}
+从真空和介质中的麦克斯韦方程组出发导出电荷守恒定律。
+它的表现形式是所谓的连续性方程\\
+\begin{equation}
+    \frac{\partial \rho}{\partial t}
+    +
+    \nabla \cdot \mathbf{J}
+    =
+    0 .
+\end{equation}
+
+分别从真空中的麦克斯韦方程 $(1.1)\sim(1.4)$
+和介质中的麦克斯韦方程 $(1.29)\sim(1.32)$ 出发，
+证明其中的电荷密度和电流密度 $(\rho,\mathbf{J})$
+满足上述连续性方程。\\
+解答：\\
+\begin{align}
+    \nabla \times B=\mu_0 \epsilon_0 \frac{\partial E}{\partial t}+\mu_0 J\\
+    \text{从而}\nabla \cdot J=\frac{1}{\mu_0}\nabla \cdot(\nabla \times B)-\epsilon_0 \nabla \cdot \frac{\partial E}{\partial t}\\
+    \text{第一项为0,带入}\frac{\partial \rho}{\partial t}=\epsilon_0\frac{\partial}{\partial t}(\nabla \cdot E),\text{得证} 
+\end{align}
+\section{电磁场在分立变换下的行为}
+
+验证电磁场在空间反射和时间反演变换下若分别按照
+$(1.7)$ 和 $(1.8)$ 式变换，
+则麦克斯韦方程 $(1.1)\sim(1.4)$ 的形式保持不变。\\
+解答：空间反射，$\nabla,E,J$变号，其他不变。时间反演，$B,\frac{\partial}{\partial t},J$变号。
+\section{束缚电荷的电荷密度}
+
+束缚电荷的电荷密度。证明束缚电荷的积分公式 $(1.18)$，
+并进一步验证其电荷密度的表达式 $(1.19)$ 和 $(1.20)$。
+
+\noindent
+解答：
+
+设介质的极化强度为 $\mathbf{P}$。对任意体积 $V$，其边界为 $S$。
+由于介质内部相邻分子的正负束缚电荷相互抵消，只有边界处会留下未被抵消的束缚电荷。
+因此体积 $V$ 内的总束缚电荷可以写成
+\begin{equation}
+    Q_{\mathrm{b}}
+    =
+    -\oint_S \mathbf{P}\cdot d\mathbf{S}.
+\end{equation}
+
+另一方面，总束缚电荷也可以由束缚电荷体密度表示为
+\begin{equation}
+    Q_{\mathrm{b}}
+    =
+    \int_V \rho_{\mathrm{b}}\,dV.
+\end{equation}
+
+由高斯公式，
+\begin{equation}
+    \oint_S \mathbf{P}\cdot d\mathbf{S}
+    =
+    \int_V \nabla\cdot \mathbf{P}\,dV.
+\end{equation}
+
+因此
+\begin{equation}
+    \int_V \rho_{\mathrm{b}}\,dV
+    =
+    -\int_V \nabla\cdot \mathbf{P}\,dV.
+\end{equation}
+
+由于体积 $V$ 是任意的，所以得到束缚电荷的体密度
+\begin{equation}
+    \rho_{\mathrm{b}}
+    =
+    -\nabla\cdot \mathbf{P}.
+\end{equation}
+
+对于介质表面，若 $\mathbf{n}$ 是从介质内部指向外部的单位法向量，
+则表面束缚电荷密度为
+\begin{equation}
+    \sigma_{\mathrm{b}}
+    =
+    \mathbf{P}\cdot \mathbf{n}.
+\end{equation}
+
+若是两种介质的分界面，$\mathbf{n}$ 从介质 $1$ 指向介质 $2$，
+则表面束缚电荷密度为
+\begin{equation}
+    \sigma_{\mathrm{b}}
+    =
+    \left(
+    \mathbf{P}_1-\mathbf{P}_2
+    \right)\cdot \mathbf{n}.
+\end{equation}
+
+这就验证了束缚电荷密度的体密度和面密度表达式。
+
+\section{磁化强度相应的分子电流}
+
+磁化强度相应的分子电流。证明磁化强度与分子电流密度的积分公式 $(1.22)$，
+并进一步验证其电流密度的表达式 $(1.23)$ 和 $(1.24)$。
+
+\noindent
+解答：
+
+设介质的磁化强度为 $\mathbf{M}$。磁化强度表示单位体积内的磁偶极矩。
+在磁化介质中，分子电流在介质内部相邻部分相互抵消，宏观上可以等效为体分子电流和面分子电流。
+
+对于任意曲面 $S$，其边界为闭合曲线 $L$。
+穿过曲面 $S$ 的分子电流为
+\begin{equation}
+    I_{\mathrm{m}}
+    =
+    \oint_L \mathbf{M}\cdot d\mathbf{l}.
+\end{equation}
+
+另一方面，穿过曲面 $S$ 的电流也可以由体分子电流密度表示为
+\begin{equation}
+    I_{\mathrm{m}}
+    =
+    \int_S \mathbf{J}_{\mathrm{m}}\cdot d\mathbf{S}.
+\end{equation}
+
+由斯托克斯公式，
+\begin{equation}
+    \oint_L \mathbf{M}\cdot d\mathbf{l}
+    =
+    \int_S
+    \left(
+    \nabla\times \mathbf{M}
+    \right)
+    \cdot d\mathbf{S}.
+\end{equation}
+
+于是
+\begin{equation}
+    \int_S \mathbf{J}_{\mathrm{m}}\cdot d\mathbf{S}
+    =
+    \int_S
+    \left(
+    \nabla\times \mathbf{M}
+    \right)
+    \cdot d\mathbf{S}.
+\end{equation}
+
+由于曲面 $S$ 是任意的，所以得到体分子电流密度
+\begin{equation}
+    \mathbf{J}_{\mathrm{m}}
+    =
+    \nabla\times \mathbf{M}.
+\end{equation}
+
+对于介质表面，若 $\mathbf{n}$ 是从介质内部指向外部的单位法向量，
+则面分子电流密度为
+\begin{equation}
+    \mathbf{K}_{\mathrm{m}}
+    =
+    \mathbf{M}\times \mathbf{n}.
+\end{equation}
+
+若是两种介质的分界面，$\mathbf{n}$ 从介质 $1$ 指向介质 $2$，
+则分界面上的面分子电流密度为
+\begin{equation}
+    \mathbf{K}_{\mathrm{m}}
+    =
+    \left(
+    \mathbf{M}_1-\mathbf{M}_2
+    \right)
+    \times \mathbf{n}.
+\end{equation}
+
+这就验证了磁化强度对应的体分子电流密度和面分子电流密度表达式。
+\section{卷积定理}见信号与系统教材
+\section{矢量恒等式}
+列出分量即可，略
+\section{连续介质中的应力张量}
+从基本出发，
+\begin{equation}
+F=ma,F\times r=0
+\end{equation}
+展开写，就是
+\begin{align}
+       a_i\int_V \rho(x,t)d^3x=F^{bulk}_i+F^{surface}_i\\
+    0=\int_V \rho x\times fx^2 d^3x+\int_{\partial V}T_{ij}dS_j 
+\end{align}
+利用高斯定理，就有
+\begin{align}
+ 0=\int_V[\epsilon_{ijk}r_j\rho f_k+\partial _l(\epsilon_{ijk}r_jT_{kl})]d^3 x.
+\end{align}
+拿掉积分，同时把第二项展开，注意$l$是自由指标，所以$\partial_l r_j$也有求导结果是$\delta_{jl}$,有
+\begin{align}
+    \e_{ijk}r_j\rho f_k+\e_{ijk}r_j\p_l T_{kl}+\e_{ijk}\delta_{jl}T_{kl}=0
+\end{align}
+回到平动，前两项代表了平动加速度，我们以质心为参考系，则消失。只剩下
+\begin{align}
+    \e_{ijk}\delta_{jl}T_{kl}=0
+\end{align}
+即
+\begin{align}
+    \e_{ijk}T_{jk}=0
+\end{align}
+验证一下各个分量即有$$T=T^T$$
+\end{document}
