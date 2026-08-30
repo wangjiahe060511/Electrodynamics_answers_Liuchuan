@@ -1,0 +1,166 @@
+\section{原点磁偶极子在空间产生的磁场}
+
+磁偶极矩$\mathbf m$在原点产生的矢势为
+\begin{align}
+    \mathbf A
+    =
+    \frac{\mu}{4\pi}
+    \frac{\mathbf m\times\mathbf x}{|\mathbf x|^3}.
+\end{align}
+
+利用
+\begin{align}
+    \nabla\frac{1}{|\mathbf x|}
+    =
+    -\frac{\mathbf x}{|\mathbf x|^3},
+\end{align}
+可以写成
+\begin{align}
+    \mathbf A
+    =
+    -\frac{\mu}{4\pi}
+    \mathbf m\times\nabla\frac{1}{|\mathbf x|}.
+\end{align}
+
+因此
+\begin{align}
+    \mathbf B
+    =
+    \nabla\times\mathbf A
+    =
+    \frac{\mu}{4\pi}
+    \left[
+    (\mathbf m\cdot\nabla)
+    \nabla\frac{1}{|\mathbf x|}
+    -
+    \mathbf m\nabla^2\frac{1}{|\mathbf x|}
+    \right].
+\end{align}
+
+注意分布意义下
+\begin{align}
+    \pdv{}{x_i}\pdv{}{x_j}
+    \frac{1}{|\mathbf x|}
+    &=
+    \frac{
+    3x_ix_j-|\mathbf x|^2\delta_{ij}
+    }{
+    |\mathbf x|^5
+    }
+    -
+    \frac{4\pi}{3}
+    \delta_{ij}\delta^3(\mathbf x),
+    \\
+    \nabla^2\frac{1}{|\mathbf x|}
+    &=
+    -4\pi\delta^3(\mathbf x).
+\end{align}
+
+代入即得
+\begin{align}
+    \boxed{
+    \mathbf B(\mathbf x)
+    =
+    \frac{\mu}{4\pi}
+    \left[
+    \frac{
+    3\mathbf n(\mathbf n\cdot\mathbf m)-\mathbf m
+    }{
+    |\mathbf x|^3
+    }
+    +
+    \frac{8\pi}{3}
+    \mathbf m\delta^3(\mathbf x)
+    \right]
+    },
+\end{align}
+其中
+\begin{align}
+    \mathbf n=\frac{\mathbf x}{|\mathbf x|}.
+\end{align}
+
+因此磁偶极子的磁场确实需要包含一个正比于
+$\delta^3(\mathbf x)$的原点修正项。
+
+
+\section{磁多极展开下的力}
+
+对于局域的稳恒电流分布，所受磁力为
+\begin{align}
+    \mathbf F
+    =
+    \int
+    \mathbf J(\mathbf x)\times
+    \mathbf B(\mathbf x)\,d^3x.
+\end{align}
+
+将外磁场在原点附近作多极展开
+\begin{align}
+    B_k(\mathbf x)
+    =
+    B_k(0)
+    +
+    x_l\p_l B_k(0)
+    +\cdots.
+\end{align}
+
+由于稳恒局域电流满足
+\begin{align}
+    \int\mathbf J\,d^3x=0,
+\end{align}
+零阶项没有贡献，因此首项为
+\begin{align}
+    F_i
+    =
+    \epsilon_{ijk}
+    \p_lB_k
+    \int x_lJ_j\,d^3x.
+\end{align}
+
+由磁偶极矩
+\begin{align}
+    \mathbf m
+    =
+    \frac12
+    \int
+    \mathbf x\times\mathbf J\,d^3x
+\end{align}
+以及稳恒电流条件可得
+\begin{align}
+    \int x_lJ_j\,d^3x
+    =
+    \epsilon_{ljm}m_m.
+\end{align}
+
+于是
+\begin{align}
+    F_i
+    &=
+    \epsilon_{ijk}
+    \epsilon_{ljm}
+    \p_lB_k\,m_m
+    \\
+    &=
+    \p_i(\mathbf m\cdot\mathbf B)
+    -
+    m_i(\nabla\cdot\mathbf B).
+\end{align}
+
+利用
+\begin{align}
+    \nabla\cdot\mathbf B=0,
+\end{align}
+最终得到
+\begin{align}
+    \boxed{
+    \mathbf F
+    =
+    \nabla(\mathbf m\cdot\mathbf B)
+    =
+    (\mathbf m\times\nabla)\times\mathbf B
+    }.
+\end{align}
+
+因此式$(3.37)$正是磁多极展开下力的首项贡献。
+
+\end{document}
