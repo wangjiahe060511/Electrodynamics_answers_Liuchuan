@@ -1,0 +1,1586 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{ctex}
+\usepackage{tikz}
+\usetikzlibrary{calc,angles,quotes}
+\usepackage{amsmath}
+
+\newcommand{\p}{\partial}
+\newcommand{\e}{\epsilon}
+\newcommand{\sd}{\nabla\cdot}%散度
+\newcommand{\xd}{\nabla \times}%旋度
+\newcommand{\dv}[2]{\frac{\mathrm d #1}{\mathrm d #2}}
+\newcommand{\dvv}[2]{\frac{\mathrm d^2 #1}{\mathrm d #2^2}}
+\newcommand{\pdv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pdvv}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\ti}{\times}
+\newcommand{\cd}{\cdot}
+\newcommand{\de}{\delta}
+\title{电动力学第四章习题解答}
+\author{wangjiahe060511}
+\date{August 2026}
+
+\begin{document}
+
+\maketitle
+\section{表面等离极化激元}
+\subsection{(1)}
+金属与介电质中的情况大致一样，我们仅验证一个
+只需要验证
+\begin{align}
+    (\nabla ^2+k^2)E=0
+\end{align}
+即可。带入可得
+\begin{align}
+    k^2=k_1^2+k_3^{(1)2}
+\end{align}
+这是一个满足波动方程的电磁波。随后带入
+\begin{align}
+    \xd E=-\pdv{B}{t}
+\end{align}
+可得$B_x=B_z=0$,这代表这个波是TM的。
+\subsection{}
+\begin{align}
+    S=\frac12 Re(E\times H^*)
+\end{align}
+带入可知只有x分量与z分量（因H只有y分量）
+在介质侧，为
+\begin{align}
+    S_x^{(2)}&=\frac{\omega \e_0 \e_2 k_1}{2|k_3^{(2)}|^2}|E_0^2|e^{-2Im(k_3^{(2)z})}\\
+    S_z^{(2)}
+&=
+\frac{\omega\epsilon_0\epsilon_2}{2}
+|E_0|^2
+e^{-2\mathrm{Im}(k_3^{(2)})z}
+\frac{\mathrm{Re}(k_3^{(2)})}
+{|k_3^{(2)}|^2}.
+\end{align}
+而在金属区，则有
+
+\begin{align}
+S_x^{(1)}
+&=
+\frac{\omega\epsilon_0\epsilon_1 k_1}
+{2|k_3^{(1)}|^2}
+|E_0|^2
+e^{2\mathrm{Im}(k_3^{(1)})z},
+\end{align}
+
+以及
+
+\begin{align}
+S_z^{(1)}
+&=
+-\frac{\omega\epsilon_0\epsilon_1}{2}
+|E_0|^2
+e^{2\mathrm{Im}(k_3^{(1)})z}
+\frac{\mathrm{Re}(k_3^{(1)})}
+{|k_3^{(1)}|^2}.
+\end{align}
+无损耗，需要在两个区域能量均不沿z轴传播，也就是$$Re(k_3^{(1,2)})=0$$
+\subsection{}
+直接$$d=\frac{1}{Im(k_3^{(1)})}$$即可
+\section{金属薄膜中的表面等离极化激元}
+
+设金属薄膜的介电常数为$\epsilon_1$，厚度为$d$，
+占据区域
+\[
+-\frac d2<z<\frac d2.
+\]
+薄膜下方介质的介电常数为$\epsilon_2$，
+上方介质的介电常数为$\epsilon_3$。
+不假设$\epsilon_2=\epsilon_3$。
+
+由第一题已经知道，SPP为TM波，因此磁场只有$y$分量。
+仍假设波沿$x$方向传播，并写成
+\begin{align}
+    H_y(x,z,t)=h(z)e^{ik_1x-i\omega t}.
+\end{align}
+在每一种均匀介质中，$H_y$均满足Helmholtz方程
+\begin{align}
+    \nabla^2 H_y+\epsilon_j k_0^2H_y=0,
+    \qquad
+    k_0=\frac{\omega}{c}.
+\end{align}
+代入上述形式可得
+\begin{align}
+    \dvv{h}{z}
+    -
+    \kappa_j^2 h=0,
+\end{align}
+其中定义
+\begin{align}
+    \kappa_j^2
+    =
+    k_1^2-\epsilon_jk_0^2.
+\end{align}
+
+为了得到束缚在金属薄膜附近的SPP，
+上下两个无限大介质中的场必须在$|z|\rightarrow\infty$时衰减。
+因此三区域中的解分别写为
+\begin{align}
+H_y^{(2)}
+&=
+A e^{\kappa_2(z+d/2)}
+e^{ik_1x-i\omega t},
+\qquad z<-\frac d2,
+\\
+H_y^{(1)}
+&=
+\left(
+B e^{\kappa_1 z}
++
+C e^{-\kappa_1 z}
+\right)
+e^{ik_1x-i\omega t},
+\qquad
+-\frac d2<z<\frac d2,
+\\
+H_y^{(3)}
+&=
+D e^{-\kappa_3(z-d/2)}
+e^{ik_1x-i\omega t},
+\qquad z>\frac d2.
+\end{align}
+
+注意金属薄膜的厚度有限，因此在金属内部不存在
+$z\rightarrow\pm\infty$的边界条件，
+故$e^{\kappa_1z}$和$e^{-\kappa_1z}$两项均必须保留。
+这与第一题中半无限金属只有一个指数项不同。
+
+由Maxwell方程
+\begin{align}
+    \xd H
+    =
+    \pdv{D}{t}
+    =
+    -i\omega\epsilon_0\epsilon_j E
+\end{align}
+可得
+\begin{align}
+    E_x^{(j)}
+    =
+    -\frac{i}{\omega\epsilon_0\epsilon_j}
+    \pdv{H_y^{(j)}}{z}.
+\end{align}
+因此，在两个界面处需要满足
+\begin{align}
+    H_y\ \text{连续},
+    \qquad
+    \frac{1}{\epsilon}
+    \pdv{H_y}{z}\ \text{连续}.
+\end{align}
+
+为了简化记号，定义
+\begin{align}
+    p_j=\frac{\kappa_j}{\epsilon_j}.
+\end{align}
+
+在下界面$z=-d/2$处，有
+\begin{align}
+    B e^{-\kappa_1d/2}
+    +
+    C e^{\kappa_1d/2}
+    &=A,
+\\
+    p_1
+    \left(
+    B e^{-\kappa_1d/2}
+    -
+    C e^{\kappa_1d/2}
+    \right)
+    &=p_2A.
+\end{align}
+
+在上界面$z=d/2$处，有
+\begin{align}
+    B e^{\kappa_1d/2}
+    +
+    C e^{-\kappa_1d/2}
+    &=D,
+\\
+    p_1
+    \left(
+    B e^{\kappa_1d/2}
+    -
+    C e^{-\kappa_1d/2}
+    \right)
+    &=-p_3D.
+\end{align}
+
+这四个方程共同决定$A,B,C,D$。
+若希望存在非零的电磁场解，则方程组的系数行列式必须为零。
+消去$A,B,C,D$后可得金属薄膜SPP的色散关系
+\begin{align}
+    \left(p_1^2+p_2p_3\right)
+    \sinh(\kappa_1d)
+    +
+    p_1(p_2+p_3)
+    \cosh(\kappa_1d)
+    =0.
+\end{align}
+等价地，
+\begin{align}
+    \tanh(\kappa_1d)
+    =
+    -
+    \frac{p_1(p_2+p_3)}
+    {p_1^2+p_2p_3}.
+\end{align}
+
+这个方程体现了上下两个金属--介质界面之间的耦合。
+
+当金属薄膜很厚，即
+\begin{align}
+    \kappa_1d\gg1,
+\end{align}
+有
+\begin{align}
+    \tanh(\kappa_1d)\rightarrow1.
+\end{align}
+于是色散关系变为
+\begin{align}
+    p_1^2+p_1p_2+p_1p_3+p_2p_3=0,
+\end{align}
+即
+\begin{align}
+    (p_1+p_2)(p_1+p_3)=0.
+\end{align}
+因此存在两种可能：
+\begin{align}
+    p_1+p_2=0,
+\end{align}
+或者
+\begin{align}
+    p_1+p_3=0.
+\end{align}
+它们分别正是金属与下方介质、金属与上方介质形成的
+两个独立单界面SPP的色散关系。
+
+因此，在$d$远大于SPP在金属中的穿透深度时，
+上下两个界面上的SPP近似互不影响；
+而当$d$与穿透深度可比时，
+两个界面的倏逝场在金属内部发生重叠，
+原来的两个独立SPP便发生耦合，形成整个三层结构的两个混合本征模。
+
+特别地，如果上下介质恰好相同，即
+\begin{align}
+    \epsilon_2=\epsilon_3,
+\end{align}
+整个系统才具有关于$z=0$的镜面对称性。
+此时两个混合模式可以进一步分成偶模和奇模，
+金属内部的场分别可写为
+\begin{align}
+    H_y^{(+)}
+    &\propto
+    \cosh(\kappa_1z),
+\\
+    H_y^{(-)}
+    &\propto
+    \sinh(\kappa_1z).
+\end{align}
+\section{各向异性介质中电磁波的传播}
+
+考虑均匀、非磁性的各向异性介质，
+\begin{align}
+    D_i=\epsilon_0\epsilon_{ij}E_j.
+\end{align}
+对于无自由电荷、无自由电流区域，Maxwell方程给出
+\begin{align}
+    \nabla\times\nabla\times E
+    =
+    k_0^2\boldsymbol{\epsilon}E,
+    \qquad
+    k_0=\frac{\omega}{c}.
+\end{align}
+
+对于平面波
+\begin{align}
+    E=E_0e^{i(\mathbf k\cdot\mathbf r-\omega t)},
+\end{align}
+有
+\begin{align}
+    \nabla\rightarrow i\mathbf k,
+\end{align}
+故
+\begin{align}
+    -\mathbf k\times(\mathbf k\times E)
+    =
+    k_0^2\boldsymbol{\epsilon}E.
+\end{align}
+利用
+\begin{align}
+    \mathbf k\times(\mathbf k\times E)
+    =
+    \mathbf k(\mathbf k\cdot E)-k^2E,
+\end{align}
+得到
+\begin{align}
+    \left(
+    k^2I-\mathbf k\mathbf k^{T}
+    -k_0^2\boldsymbol{\epsilon}
+    \right)E=0.
+\end{align}
+
+即
+\begin{align}
+\begin{pmatrix}
+k_y^2+k_z^2-k_0^2\epsilon_{11}
+&
+-k_xk_y-k_0^2\epsilon_{12}
+&
+-k_xk_z-k_0^2\epsilon_{13}
+\\
+-k_xk_y-k_0^2\epsilon_{21}
+&
+k_x^2+k_z^2-k_0^2\epsilon_{22}
+&
+-k_yk_z-k_0^2\epsilon_{23}
+\\
+-k_xk_z-k_0^2\epsilon_{31}
+&
+-k_yk_z-k_0^2\epsilon_{32}
+&
+k_x^2+k_y^2-k_0^2\epsilon_{33}
+\end{pmatrix}
+\begin{pmatrix}
+E_x\\
+E_y\\
+E_z
+\end{pmatrix}
+=0.
+\end{align}
+
+为了存在非零电场，必须满足
+\begin{align}
+    \boxed{
+    \det
+    \left(
+    k^2I-\mathbf k\mathbf k^{T}
+    -k_0^2\boldsymbol{\epsilon}
+    \right)=0
+    }.
+\end{align}
+
+\subsection{介电张量的主轴}
+
+对于无损耗的互易介质，
+$\boldsymbol{\epsilon}$为实对称矩阵，因此可以取其三个本征矢
+作为坐标轴，使其对角化：
+\begin{align}
+    \boldsymbol{\epsilon}
+    =
+    \begin{pmatrix}
+    \epsilon_1&0&0\\
+    0&\epsilon_2&0\\
+    0&0&\epsilon_3
+    \end{pmatrix}.
+\end{align}
+
+三个本征矢即介质的三个主轴，
+三个本征值即三个主介电常数。
+
+对于单轴晶体，取光轴为$z$轴，则
+\begin{align}
+    \boldsymbol{\epsilon}
+    =
+    \begin{pmatrix}
+    \epsilon_\perp&0&0\\
+    0&\epsilon_\perp&0\\
+    0&0&\epsilon_\parallel
+    \end{pmatrix}.
+\end{align}
+
+由于$x,y$方向完全等价，可以利用绕$z$轴的旋转对称性，
+令波矢位于$xz$平面：
+\begin{align}
+    \mathbf k=(k_x,0,k_z).
+\end{align}
+
+此时本征方程化为
+\begin{align}
+\begin{pmatrix}
+k_z^2-k_0^2\epsilon_\perp
+&
+0
+&
+-k_xk_z
+\\
+0
+&
+k_x^2+k_z^2-k_0^2\epsilon_\perp
+&
+0
+\\
+-k_xk_z
+&
+0
+&
+k_x^2-k_0^2\epsilon_\parallel
+\end{pmatrix}
+\begin{pmatrix}
+E_x\\
+E_y\\
+E_z
+\end{pmatrix}
+=0.
+\end{align}
+
+行列式为零给出
+\begin{align}
+&
+\left(
+k_x^2+k_z^2-k_0^2\epsilon_\perp
+\right)
+\nonumber\\
+&\qquad\times
+\left[
+\epsilon_\perp k_x^2
++\epsilon_\parallel k_z^2
+-k_0^2\epsilon_\perp\epsilon_\parallel
+\right]
+=0.
+\end{align}
+
+因此存在两支本征模式。
+
+\subsection{普通光与非常光}
+
+第一支满足
+\begin{align}
+    \boxed{
+    k_x^2+k_z^2
+    =
+    \epsilon_\perp k_0^2
+    }.
+\end{align}
+这一支称为普通光（ordinary wave）。
+
+由本征方程可知其电场为
+\begin{align}
+    \boxed{
+    E_o=(0,E_y,0)
+    }.
+\end{align}
+
+这里$y$方向并不是晶体本身特殊的方向，
+而是由于我们已经把$\mathbf k$选在$xz$平面内。
+一般而言，
+\begin{align}
+    \boxed{
+    E_o\propto
+    \hat{\mathbf a}\times\mathbf k
+    },
+\end{align}
+其中$\hat{\mathbf a}$为光轴方向。
+
+因此，对于给定的$\mathbf k$，
+普通光只有一个独立的偏振本征方向。
+
+第二支满足
+\begin{align}
+    \boxed{
+    \frac{k_x^2}{\epsilon_\parallel}
+    +
+    \frac{k_z^2}{\epsilon_\perp}
+    =
+    k_0^2
+    }.
+\end{align}
+这一支称为非常光（extraordinary wave）。
+
+其电场位于$xz$平面内：
+\begin{align}
+    E_e=(E_x,0,E_z).
+\end{align}
+
+但$E_x,E_z$并不是两个独立的偏振自由度。
+由
+\begin{align}
+    \nabla\cdot D=0
+\end{align}
+得到
+\begin{align}
+    \mathbf k\cdot D=0,
+\end{align}
+即
+\begin{align}
+    k_x\epsilon_\perp E_x
+    +
+    k_z\epsilon_\parallel E_z
+    =0.
+\end{align}
+因此
+\begin{align}
+    \boxed{
+    \frac{E_z}{E_x}
+    =
+    -\frac{\epsilon_\perp k_x}
+    {\epsilon_\parallel k_z}
+    }.
+\end{align}
+
+所以对于给定$\mathbf k$，非常光同样只有一个独立的偏振本征态。
+
+普通光的等频面为球面，
+而非常光的等频面为椭球面。
+因此对于同一传播方向，一般存在两个不同的波数，
+即产生双折射。
+
+双折射的物理来源是介质沿光轴和平行于横向方向的
+极化响应不同：
+\begin{align}
+    \epsilon_\parallel\neq\epsilon_\perp.
+\end{align}
+因此两种不同的本征偏振感受到不同的介质响应，
+从而具有不同的色散关系。
+
+\subsection{界面上的Fresnel问题}
+\textbf{首先一个物理图像：oe光就是正常介质中的两种偏振！只不过在这种介质中，一个偏振有了偏移，不再垂直于波矢k}
+下面考虑从各向同性介质入射到单轴晶体中的情况。
+
+令界面为
+\begin{align}
+    z=0,
+\end{align}
+各向同性介质位于$z<0$，其相对介电常数为$\epsilon_i$；
+单轴晶体位于$z>0$，光轴沿$z$方向。
+
+令入射面为$xz$平面。
+
+由于界面沿$x$方向具有平移对称性，
+所有入射、反射以及透射波必须具有相同的切向波数：
+\begin{align}
+    \boxed{
+    k_{ix}=k_{rx}=k_{ox}=k_{ex}\equiv k_x
+    }.
+\end{align}
+
+入射介质中的法向波数为
+\begin{align}
+    k_{iz}
+    =
+    \sqrt{
+    \epsilon_i k_0^2-k_x^2
+    }.
+\end{align}
+
+需要特别注意的是，
+在各向同性入射介质中不存在$o/e$光的区分，
+而只有两种独立的偏振：
+\begin{align}
+    s:\quad E\perp\text{入射面},
+\end{align}
+以及
+\begin{align}
+    p:\quad E\parallel\text{入射面}.
+\end{align}
+
+在目前的几何构型中，恰好有
+\begin{align}
+    \boxed{
+    s\longleftrightarrow o
+    },
+\end{align}
+以及
+\begin{align}
+    \boxed{
+    p\longleftrightarrow e
+    }.
+\end{align}
+
+因此两种偏振完全解耦，
+整个Fresnel问题可以分解为两个独立的$2\times2$边值问题：
+\begin{align}
+    \boxed{
+    s_i\rightarrow s_r+o_t
+    }
+\end{align}
+和
+\begin{align}
+    \boxed{
+    p_i\rightarrow p_r+e_t
+    }.
+\end{align}
+
+一般入射偏振
+\begin{align}
+    E_i=A_sE_s+A_pE_p
+\end{align}
+只需分别计算这两个问题，最后利用线性性叠加即可。
+
+\subsection{$s$偏振入射：普通光}
+
+对于$s$偏振，
+\begin{align}
+    E_i
+    =
+    (0,E_i,0),
+\end{align}
+反射波为
+\begin{align}
+    E_r
+    =
+    (0,E_r,0),
+\end{align}
+透射后的普通光为
+\begin{align}
+    E_o
+    =
+    (0,E_o,0).
+\end{align}
+
+普通光满足
+\begin{align}
+    k_x^2+k_{oz}^2
+    =
+    \epsilon_\perp k_0^2,
+\end{align}
+故
+\begin{align}
+    k_{oz}
+    =
+    \sqrt{
+    \epsilon_\perp k_0^2-k_x^2
+    }.
+\end{align}
+
+由
+\begin{align}
+    H
+    =
+    \frac{1}{\omega\mu_0}
+    \mathbf k\times E
+\end{align}
+得到入射、反射及透射波的切向磁场：
+\begin{align}
+    H_{ix}
+    &=
+    -\frac{k_{iz}}{\omega\mu_0}E_i,
+\\
+    H_{rx}
+    &=
+    \frac{k_{iz}}{\omega\mu_0}E_r,
+\\
+    H_{ox}
+    &=
+    -\frac{k_{oz}}{\omega\mu_0}E_o.
+\end{align}
+
+界面上$E_y,H_x$连续，因此
+\begin{align}
+    E_i+E_r=E_o,
+\end{align}
+以及
+\begin{align}
+    k_{iz}(E_i-E_r)
+    =
+    k_{oz}E_o.
+\end{align}
+
+定义
+\begin{align}
+    r_o=\frac{E_r}{E_i},
+    \qquad
+    t_o=\frac{E_o}{E_i},
+\end{align}
+得到
+\begin{align}
+    \boxed{
+    r_o
+    =
+    \frac{k_{iz}-k_{oz}}
+    {k_{iz}+k_{oz}}
+    },
+\end{align}
+以及
+\begin{align}
+    \boxed{
+    t_o
+    =
+    \frac{2k_{iz}}
+    {k_{iz}+k_{oz}}
+    }.
+\end{align}
+
+因此普通光的Fresnel问题与普通各向同性介质中的
+$s$偏振形式完全相同。
+
+\subsection{$p$偏振入射：非常光}
+
+对于$p$偏振，电场位于$xz$平面。
+
+为了方便边界匹配，以切向电场$E_x$作为振幅。
+在各向同性入射介质中有
+\begin{align}
+    \mathbf k_i\cdot E_i=0,
+\end{align}
+所以
+\begin{align}
+    E_{iz}
+    =
+    -\frac{k_x}{k_{iz}}E_{ix}.
+\end{align}
+
+由
+\begin{align}
+    H
+    =
+    \frac{1}{\omega\mu_0}
+    \mathbf k\times E
+\end{align}
+得到
+\begin{align}
+    H_{iy}
+    =
+    \frac{\omega\epsilon_0\epsilon_i}
+    {k_{iz}}E_{ix}.
+\end{align}
+
+对于反射$p$波，
+\begin{align}
+    H_{ry}
+    =
+    -\frac{\omega\epsilon_0\epsilon_i}
+    {k_{iz}}E_{rx}.
+\end{align}
+
+非常光满足
+\begin{align}
+    \frac{k_x^2}{\epsilon_\parallel}
+    +
+    \frac{k_{ez}^2}{\epsilon_\perp}
+    =
+    k_0^2,
+\end{align}
+故
+\begin{align}
+    \boxed{
+    k_{ez}
+    =
+    \sqrt{
+    \epsilon_\perp
+    \left(
+    k_0^2
+    -
+    \frac{k_x^2}{\epsilon_\parallel}
+    \right)
+    }
+    }.
+\end{align}
+
+非常光具有
+\begin{align}
+    E_e=(E_{ex},0,E_{ez}),
+    \qquad
+    H_e=(0,H_{ey},0).
+\end{align}
+
+由
+\begin{align}
+    \mathbf k\times H
+    =
+    -\omega D
+\end{align}
+的$x$分量可得
+\begin{align}
+    k_{ez}H_{ey}
+    =
+    \omega\epsilon_0\epsilon_\perp E_{ex}.
+\end{align}
+因此
+\begin{align}
+    H_{ey}
+    =
+    \frac{\omega\epsilon_0\epsilon_\perp}
+    {k_{ez}}
+    E_{ex}.
+\end{align}
+
+界面上$E_x,H_y$连续，故
+\begin{align}
+    E_{ix}+E_{rx}=E_{ex},
+\end{align}
+以及
+\begin{align}
+    \frac{\epsilon_i}{k_{iz}}
+    (E_{ix}-E_{rx})
+    =
+    \frac{\epsilon_\perp}{k_{ez}}
+    E_{ex}.
+\end{align}
+
+定义
+\begin{align}
+    r_e=\frac{E_{rx}}{E_{ix}},
+    \qquad
+    t_e=\frac{E_{ex}}{E_{ix}},
+\end{align}
+得到
+\begin{align}
+    \boxed{
+    r_e
+    =
+    \frac{
+    \epsilon_i k_{ez}
+    -
+    \epsilon_\perp k_{iz}
+    }{
+    \epsilon_i k_{ez}
+    +
+    \epsilon_\perp k_{iz}
+    }
+    },
+\end{align}
+以及
+\begin{align}
+    \boxed{
+    t_e
+    =
+    \frac{
+    2\epsilon_i k_{ez}
+    }{
+    \epsilon_i k_{ez}
+    +
+    \epsilon_\perp k_{iz}
+    }
+    }.
+\end{align}
+
+因此当前几何下的Fresnel问题最终可总结为
+\begin{align}
+    \boxed{
+    s\rightarrow o,
+    \qquad
+    p\rightarrow e
+    }.
+\end{align}
+
+任意入射偏振只需分解为$s,p$两部分，
+分别应用上述两套Fresnel系数后再叠加即可。
+
+\subsection{两种模式的能流}
+
+时间平均Poynting矢量为
+\begin{align}
+    S
+    =
+    \frac12
+    \operatorname{Re}
+    \left(
+    E\times H^*
+    \right).
+\end{align}
+
+对于普通光，
+\begin{align}
+    E_o=(0,E_y,0),
+\end{align}
+而
+\begin{align}
+    H_o
+    =
+    \frac{E_y}{\omega\mu_0}
+    (-k_z,0,k_x).
+\end{align}
+
+因此
+\begin{align}
+    \boxed{
+    S_o
+    =
+    \frac{|E_y|^2}
+    {2\omega\mu_0}
+    (k_x,0,k_z)
+    }.
+\end{align}
+即
+\begin{align}
+    \boxed{
+    S_o\parallel k_o
+    }.
+\end{align}
+
+普通光的相位传播方向与能量传播方向一致。
+
+对于非常光，
+\begin{align}
+    E_e=(E_x,0,E_z),
+    \qquad
+    H_e=(0,H_y,0).
+\end{align}
+
+由
+\begin{align}
+    \mathbf k\times H=-\omega D
+\end{align}
+得到
+\begin{align}
+    D_x
+    =
+    \frac{k_z}{\omega}H_y,
+    \qquad
+    D_z
+    =
+    -\frac{k_x}{\omega}H_y.
+\end{align}
+
+又因为
+\begin{align}
+    D_x
+    =
+    \epsilon_0\epsilon_\perp E_x,
+    \qquad
+    D_z
+    =
+    \epsilon_0\epsilon_\parallel E_z,
+\end{align}
+所以
+\begin{align}
+    E_x
+    =
+    \frac{k_z}
+    {\omega\epsilon_0\epsilon_\perp}H_y,
+\end{align}
+以及
+\begin{align}
+    E_z
+    =
+    -\frac{k_x}
+    {\omega\epsilon_0\epsilon_\parallel}H_y.
+\end{align}
+
+于是
+\begin{align}
+    \boxed{
+    S_e
+    =
+    \frac{|H_y|^2}
+    {2\omega\epsilon_0}
+    \left(
+    \frac{k_x}{\epsilon_\parallel},
+    0,
+    \frac{k_z}{\epsilon_\perp}
+    \right)
+    }.
+\end{align}
+
+因此一般有
+\begin{align}
+    \boxed{
+    S_e\not\parallel k_e
+    }.
+\end{align}
+
+非常光的相位传播方向与实际能量传播方向不同。
+
+事实上，非常光的等频面为
+\begin{align}
+    F(\mathbf k)
+    =
+    \frac{k_x^2}{\epsilon_\parallel}
+    +
+    \frac{k_z^2}{\epsilon_\perp}
+    -
+    k_0^2
+    =0.
+\end{align}
+有
+\begin{align}
+    \nabla_{\mathbf k}F
+    =
+    2
+    \left(
+    \frac{k_x}{\epsilon_\parallel},
+    0,
+    \frac{k_z}{\epsilon_\perp}
+    \right),
+\end{align}
+故
+\begin{align}
+    \boxed{
+    S_e\parallel\nabla_{\mathbf k}F
+    }.
+\end{align}
+
+即非常光的能流沿等频椭圆的法线方向，
+而不沿波矢本身。
+
+\subsection{反射率与透射率}
+
+Fresnel系数$r,t$是场振幅系数，
+真正的能量反射率和透射率应由Poynting矢量计算。
+
+对于普通光，
+\begin{align}
+    R_o=|r_o|^2,
+\end{align}
+并有
+\begin{align}
+    \boxed{
+    T_o
+    =
+    \frac{k_{oz}}{k_{iz}}
+    |t_o|^2
+    }.
+\end{align}
+
+对于非常光，定义
+\begin{align}
+    Y_i^{(p)}
+    =
+    \frac{\omega\epsilon_0\epsilon_i}{k_{iz}},
+\end{align}
+以及
+\begin{align}
+    Y_e
+    =
+    \frac{\omega\epsilon_0\epsilon_\perp}{k_{ez}},
+\end{align}
+则
+\begin{align}
+    \boxed{
+    T_e
+    =
+    \frac{Y_e}{Y_i^{(p)}}
+    |t_e|^2
+    }.
+\end{align}
+
+对于无损介质，应满足能量守恒
+\begin{align}
+    \boxed{
+    R_o+T_o=1,
+    \qquad
+    R_e+T_e=1
+    }.
+\end{align}
+
+\subsection{如果折射率变成复数}
+
+若介质具有损耗，
+介电常数必须写成复数。
+对于单轴晶体，
+\begin{align}
+    \epsilon_\perp
+    =
+    \epsilon_\perp'
+    +
+    i\epsilon_\perp'',
+\end{align}
+以及
+\begin{align}
+    \epsilon_\parallel
+    =
+    \epsilon_\parallel'
+    +
+    i\epsilon_\parallel''.
+\end{align}
+
+此时色散方程形式不变，
+但是波矢的解一般成为复数。
+
+对于实际的界面问题，
+切向波数$k_x$由入射波确定，
+因此主要是两个法向波数$k_z$变为复数。
+
+普通光有
+\begin{align}
+    \boxed{
+    k_{oz}
+    =
+    \sqrt{
+    \epsilon_\perp k_0^2-k_x^2
+    }
+    }.
+\end{align}
+
+非常光有
+\begin{align}
+    \boxed{
+    k_{ez}
+    =
+    \sqrt{
+    \epsilon_\perp
+    \left(
+    k_0^2
+    -
+    \frac{k_x^2}{\epsilon_\parallel}
+    \right)
+    }
+    }.
+\end{align}
+
+由于$\epsilon_\perp,\epsilon_\parallel$为复数，
+一般有
+\begin{align}
+    k_{oz}
+    =
+    k_{oz}'
+    +
+    ik_{oz}'',
+\end{align}
+以及
+\begin{align}
+    k_{ez}
+    =
+    k_{ez}'
+    +
+    ik_{ez}''.
+\end{align}
+
+对应的空间因子分别为
+\begin{align}
+    e^{ik_{oz}z}
+    =
+    e^{ik_{oz}'z}
+    e^{-k_{oz}''z},
+\end{align}
+以及
+\begin{align}
+    e^{ik_{ez}z}
+    =
+    e^{ik_{ez}'z}
+    e^{-k_{ez}''z}.
+\end{align}
+
+因此两个本征模式的场振幅衰减率分别为
+\begin{align}
+    \boxed{
+    \alpha_o
+    =
+    \operatorname{Im}(k_{oz})
+    },
+\end{align}
+以及
+\begin{align}
+    \boxed{
+    \alpha_e
+    =
+    \operatorname{Im}(k_{ez})
+    }.
+\end{align}
+
+一般情况下
+\begin{align}
+    \boxed{
+    \alpha_o\neq\alpha_e
+    }.
+\end{align}
+
+普通光只感受到$\epsilon_\perp$方向的介质响应，
+而非常光同时包含垂直与平行于光轴的电场分量，
+因此其衰减同时受到
+$\epsilon_\perp''$和$\epsilon_\parallel''$的影响。
+
+更一般地，若介电常数为复矩阵
+\begin{align}
+    \boldsymbol{\epsilon}
+    =
+    \boldsymbol{\epsilon}'
+    +
+    i\boldsymbol{\epsilon}'',
+\end{align}
+则仍然通过
+\begin{align}
+    \boxed{
+    \det
+    \left[
+    k^2I-\mathbf k\mathbf k^T
+    -k_0^2\boldsymbol{\epsilon}
+    \right]
+    =0
+    }
+\end{align}
+求取允许的复波矢。
+
+介电常数矩阵的虚部最终通过这一复本征方程
+转化为两支模式波矢的虚部，从而决定各自的衰减率。
+\section{电磁场的角动量和偏振的关系}
+\subsection{}
+从$$L=\frac{1}{\mu_0 c^2}\int r\ti (E\ti B)dV$$开始推导
+$$L=\frac{1}{\mu_0 c^2}\int E\ti A+E_j (r\ti \nabla)A_jdV$$ \\
+首先带入$B=\xd A$,然后逐层的把矢量运算转化成指标运算，最后积分内部可变为
+\begin{align}
+    \e_{ijk}r_j\e_{klm}E_l\e_{mno}\p_nA_o
+\end{align}
+然后利用$$\e_{ijk}\e_{ilm}=\de_{jl}\de_{km}-\de_{jm}\de_{kl}$$一通化简之后得到
+\begin{align}
+\e_{ijk}r_j(E_l\p_k A_l-E_l\p_l A_k)
+\end{align}
+对减号前后分别分部积分，注意到所有的全微分($\p \text{然后一套}$)在无穷远边界上足够快的衰减为零（此处用了高斯定理）
+就把第一部分化成\begin{align}
+    A_l\e_{ijk}\p_k(r_jE_l)
+\end{align}
+注意所有的Levi-civita符号都可以任意提出。里面乘积求导写开，结合$\p_k r_j=\de_{kj}$
+就是\begin{align}
+    E_l \e_{ijk}r_j\p_k A_l
+\end{align}
+写回向量运算模式也就是
+\begin{align}
+    E_l(r\ti \nabla)A_l
+\end{align}
+完全一样的，减号右侧就是$-E\ti A$,于是就得到了整体的形式。
+\subsection{}
+选取规范令$E=-\pdv{A}{t}$,有
+\begin{align}
+A=\frac{1}{8\pi^3}\int \e_\lambda a_\lambda e^{ikx-iwt}+\e^*_\lambda a^*_\lambda e^{-ikx+iwt}
+\end{align}
+叉乘起来，注意两者不用同一套k积分，最终是六重，然后忽略所有的时间震荡项，有
+\[
+\begin{aligned}
+\mathbf E\times\mathbf A
+=i\int\frac{d^3k\,d^3k'}{(2\pi)^6}\omega\Big[
++&(\mathbf F\times\mathbf F'^*)e^{i(\theta-\theta')}\\
+-&(\mathbf F^*\times\mathbf F')e^{-i(\theta-\theta')}\\
+\Big]
+\end{aligned}
+\]
+其中\[
+\mathbf F(\mathbf k)=\sum_{\lambda}\boldsymbol\epsilon_\lambda(\mathbf k)a_\lambda(\mathbf k),
+\qquad
+\theta=\mathbf k\cdot\mathbf x-\omega t
+\]
+整体的计算4.133中的对空间积分，所有的指数变成Dirac函数。
+最终变成\[
+\boxed{
+\mathbf L_{\rm spin}
+=\frac{2i}{\mu_0c^2}
+\int\frac{d^3k}{(2\pi)^3}\omega
+(\mathbf F\times\mathbf F^*)
+}
+\]分别带入\[
+\mathbf e_\pm=\frac{\mathbf e_1\pm i\mathbf e_2}{\sqrt2},
+\qquad
+\mathbf e_1\times\mathbf e_2=\hat{\mathbf k}
+\]\[
+\mathbf F=a_+\mathbf e_++a_-\mathbf e_-
+\]即可证出。
+\subsubsection{电磁场的总能量}
+
+真空中电磁场的总能量为
+\begin{align}
+    W=\frac12\int d^3x
+    \left(
+    \epsilon_0 E^2+\frac{1}{\mu_0}B^2
+    \right).
+\end{align}
+
+沿用前面的记号
+\begin{align}
+    \mathbf F(\mathbf k)
+    &=\sum_\lambda \boldsymbol\epsilon_\lambda a_\lambda,\\
+    \mathbf G(\mathbf k)
+    &=\mathbf k\times\mathbf F(\mathbf k),\\
+    \theta&=\mathbf k\cdot\mathbf x-\omega t.
+\end{align}
+
+电场与磁场分别为
+\begin{align}
+    \mathbf E
+    &=i\int\frac{d^3k}{(2\pi)^3}\omega
+    \left(
+    \mathbf F e^{i\theta}
+    -\mathbf F^*e^{-i\theta}
+    \right),\\
+    \mathbf B
+    &=i\int\frac{d^3k}{(2\pi)^3}
+    \left(
+    \mathbf G e^{i\theta}
+    -\mathbf G^*e^{-i\theta}
+    \right).
+\end{align}
+
+首先计算电场能量。将$\mathbf E$点乘自身，
+并舍去时间平均后为零的振荡项，得到
+\begin{align}
+    \overline{E^2}
+    =\int\frac{d^3k\,d^3k'}{(2\pi)^6}
+    \omega\omega'
+    \Big[
+    &\mathbf F\cdot\mathbf F'^*
+    e^{i(\theta-\theta')}\\
+    +&\mathbf F^*\cdot\mathbf F'
+    e^{-i(\theta-\theta')}
+    \Big].
+\end{align}
+
+随后利用空间积分
+\begin{align}
+    \int d^3x\,
+    e^{i(\mathbf k-\mathbf k')\cdot\mathbf x}
+    =(2\pi)^3\delta^{(3)}(\mathbf k-\mathbf k'),
+\end{align}
+消去$\mathbf k'$积分，两项相同，因此
+\begin{align}
+    \boxed{
+    \int d^3x\,\overline{E^2}
+    =2\int\frac{d^3k}{(2\pi)^3}
+    \omega^2|\mathbf F|^2
+    }.
+\end{align}
+
+磁场部分完全类似，只需将
+$\omega\mathbf F$替换为$\mathbf G$，得到
+\begin{align}
+    \boxed{
+    \int d^3x\,\overline{B^2}
+    =2\int\frac{d^3k}{(2\pi)^3}
+    |\mathbf k\times\mathbf F|^2
+    }.
+\end{align}
+
+由于电磁波满足横波条件
+\begin{align}
+    \mathbf k\cdot\mathbf F=0,
+\end{align}
+因此
+\begin{align}
+    |\mathbf k\times\mathbf F|^2
+    &=k^2|\mathbf F|^2
+    -|\mathbf k\cdot\mathbf F|^2\\
+    &=k^2|\mathbf F|^2.
+\end{align}
+
+再利用真空色散关系
+\begin{align}
+    \omega=ck,\qquad
+    \frac{1}{\mu_0}=\epsilon_0c^2,
+\end{align}
+可知电场与磁场的能量贡献相等，即
+\begin{align}
+    \epsilon_0\int d^3x\,\overline{E^2}
+    =\frac{1}{\mu_0}
+    \int d^3x\,\overline{B^2}.
+\end{align}
+
+所以总能量为
+\begin{align}
+    \overline W
+    =\frac{2}{\mu_0c^2}
+    \int\frac{d^3k}{(2\pi)^3}
+    \omega^2|\mathbf F(\mathbf k)|^2.
+\end{align}
+
+最后代入圆偏振基
+\begin{align}
+    \mathbf F=a_+\mathbf e_++a_-\mathbf e_-.
+\end{align}
+
+利用正交归一关系
+\begin{align}
+    \mathbf e_\lambda^*
+    \cdot\mathbf e_{\lambda'}
+    =\delta_{\lambda\lambda'},
+\end{align}
+得到
+\begin{align}
+    |\mathbf F|^2
+    &=\mathbf F^*\cdot\mathbf F\\
+    &=|a_+|^2+|a_-|^2.
+\end{align}
+
+最终
+\begin{align}
+    \boxed{
+    \overline W
+    =\frac{2}{\mu_0c^2}
+    \int\frac{d^3k}{(2\pi)^3}
+    \omega^2
+    \left(
+    |a_+(\mathbf k)|^2
+    +|a_-(\mathbf k)|^2
+    \right)
+    }.
+\end{align}
+
+\section{菲涅尔公式的另外形式}
+题意不很明确俺觉得，带入折射定律消去俩折射率就行（由ChatGPT 6Sol建议）
+垂直偏振（正弦公式）
+\[
+\boxed{
+\begin{aligned}
+r_\perp&=-\frac{\sin(i-r)}{\sin(i+r)}\\[6pt]
+t_\perp&=\frac{2\sin r\cos i}{\sin(i+r)}
+\end{aligned}
+}
+\]
+
+
+平行偏振（正切公式）
+\[
+\boxed{
+\begin{aligned}
+r_\parallel&=\frac{\tan(i-r)}{\tan(i+r)}\\[6pt]
+t_\parallel&=\frac{2\sin r\cos i}
+{\sin(i+r)\cos(i-r)}
+\end{aligned}
+}
+\]
+\section{均匀磁场中电磁波的传播}
+
+利用
+\begin{align}
+    \epsilon_{ij}=\epsilon_0(\delta_{ij}+\chi_{ij})
+\end{align}
+求出介电常数张量，再分析其本征值、本征偏振以及不同传播方向下的色散关系。
+
+\subsection{介电常数张量及其本征值}
+
+由于静磁场均匀，可以选择坐标系使其沿 $z$ 轴：
+\begin{align}
+    \mathbf B_0=B_0\hat{\mathbf z},\qquad
+    \mathbf b=(0,0,1).
+\end{align}
+将其代入题目给出的 $\chi_{ij}$，得到
+\begin{align}
+    \boldsymbol\chi
+    =\begin{pmatrix}
+    -\dfrac{\omega_p^2}{\omega^2-\omega_B^2}
+    &i\dfrac{\omega_p^2\omega_B}{\omega(\omega^2-\omega_B^2)}&0\\[8pt]
+    -i\dfrac{\omega_p^2\omega_B}{\omega(\omega^2-\omega_B^2)}
+    &-\dfrac{\omega_p^2}{\omega^2-\omega_B^2}&0\\[8pt]
+    0&0&-\dfrac{\omega_p^2}{\omega^2}
+    \end{pmatrix}.
+\end{align}
+因此相对介电常数张量为
+\begin{align}
+    \boldsymbol\epsilon_r
+    \equiv\frac{\boldsymbol\epsilon}{\epsilon_0}
+    =\mathbf I+\boldsymbol\chi
+    =\begin{pmatrix}
+    S&iD&0\\
+    -iD&S&0\\
+    0&0&P
+    \end{pmatrix},
+\end{align}
+其中
+\begin{align}
+    S&=1-\frac{\omega_p^2}{\omega^2-\omega_B^2},\\
+    D&=\frac{\omega_p^2\omega_B}{\omega(\omega^2-\omega_B^2)},\\
+    P&=1-\frac{\omega_p^2}{\omega^2}.
+\end{align}
+三个本征值为
+\begin{align}
+    \boxed{\epsilon_+=\epsilon_0(S+D),\qquad
+    \epsilon_-=\epsilon_0(S-D),\qquad
+    \epsilon_z=\epsilon_0P.}
+\end{align}
+
+对 $\lambda_+=S+D$，本征方程给出 $E_y=-iE_x$；对 $\lambda_-=S-D$，则有 $E_y=iE_x$。归一化后可取三个本征矢为
+\begin{align}
+    \boxed{
+    \mathbf e_+=\frac{1}{\sqrt2}\begin{pmatrix}1\\-i\\0\end{pmatrix},\qquad
+    \mathbf e_- =\frac{1}{\sqrt2}\begin{pmatrix}1\\i\\0\end{pmatrix},\qquad
+    \mathbf e_z=\begin{pmatrix}0\\0\\1\end{pmatrix}.}
+\end{align}
+前两个本征矢是复矢量，这意味着不再是之前处理的线偏振，而必然是圆偏振，因为有些落后了i的相位。
+\\
+其他的讨论，请见双折射一节。
+\\
+
+\section{波包传播与不确定关系}
+
+由式（4.56）和（4.61），
+
+\begin{align}
+u(x,t)
+&=\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^{\infty}
+A(k)e^{i[kx-\omega(k)t]}\,dk\\
+&=e^{i(k_0v_g-\omega_0)t}
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^{\infty}
+A(k)e^{ik(x-v_gt)}\,dk\\
+&=e^{i(k_0v_g-\omega_0)t}u(x-v_gt,0).
+\end{align}
+
+即验证式（4.62）。
+
+\section{波导中的横向和纵向电磁场的关系}
+
+令电磁场具有因子 $e^{ik_zz-i\omega t}$，由式（4.83）和（4.84），
+
+\begin{align}
+k_z\mathbf E_\perp
++\omega\mathbf e_3\times\mathbf B_\perp
+&=-i\nabla_\perp E_z,\\
+k_z\mathbf B_\perp
+-\mu\epsilon\omega\mathbf e_3\times\mathbf E_\perp
+&=-i\nabla_\perp B_z.
+\end{align}
+
+利用
+\[
+\mathbf e_3\times(\mathbf e_3\times\mathbf A)
+=-\mathbf A,
+\qquad
+k_\perp^2=\mu\epsilon\omega^2-k_z^2,
+\]
+消去另一横向场分量，得到
+
+\begin{align}
+\boxed{
+\mathbf E_\perp
+=\frac{i}{k_\perp^2}
+\left[
+k_z\nabla_\perp E_z
+-\omega\mathbf e_3\times\nabla_\perp B_z
+\right]
+},\\[6pt]
+\boxed{
+\mathbf B_\perp
+=\frac{i}{k_\perp^2}
+\left[
+k_z\nabla_\perp B_z
++\mu\epsilon\omega\mathbf e_3\times\nabla_\perp E_z
+\right]
+}.
+\end{align}
+
+即验证式（4.87）。
+
+\section{金属波导单位长度的损耗}
+
+由金属中的电磁场方程（4.39），良导体的趋肤深度为
+
+\[
+\delta=\sqrt{\frac{2}{\mu\sigma\omega}},
+\]
+
+电场沿金属内部法向深度 $s$ 衰减：
+
+\[
+\mathbf E(s)=\mathbf E(0)e^{-(1-i)s/\delta},
+\qquad
+|\mathbf E(0)|^2
+=\frac{2}{\sigma^2\delta^2}
+|\mathbf n\times\mathbf H|^2.
+\]
+
+单位面积上的平均焦耳损耗为
+
+\begin{align}
+p_{\rm loss}
+&=\frac{\sigma}{2}\int_0^\infty
+|\mathbf E(s)|^2\,ds\\
+&=\frac{\sigma\delta}{4}|\mathbf E(0)|^2\\
+&=\frac{1}{2\sigma\delta}
+|\mathbf n\times\mathbf H|^2.
+\end{align}
+
+沿波导横截面边界 $C$ 积分，得到
+
+\[
+\boxed{
+-\frac{dP}{dz}
+=\frac{1}{2\sigma\delta}
+\oint_C|\mathbf n\times\mathbf H|^2\,dl
+}.
+\]
+
+即验证式（4.110）。
+
+\section{声明}
+本人推导学习时，忘记及时整理7,8,9题，故该三题答案由GPT生成，其余题目由本人撰写，难免有错误，欢迎指出！
+\end{document}
